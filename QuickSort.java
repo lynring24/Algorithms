@@ -12,20 +12,21 @@ public class QuickSort {
 			quickSort(numbers,pivot+1,high);
 		}
 	}
-	public int partition(int[] numbers, int start, int end){
-		int key = numbers[start];
-		int i=start;
-		while(i<end){
-			for(;numbers[i++]<key&&i<end;i++) count++;
-			for(;numbers[end]>=key&&end>start;end--) count++;
-			if(i<end){
-				int temp= numbers[start];
-				numbers[start]=numbers[end];
-				numbers[end]=temp;
-			}
-		}
-		numbers[start]=numbers[end];
-		numbers[end]=key;
-		return start;
+	public int partition(int[] numbers, int low, int high){
+		int key = numbers[low];
+		int pivot = low;
+		  for(int i=low+1;i<=high;i++){
+				count++;
+			  if(numbers[i]<key){
+				pivot++; 
+				int temp = numbers[i];
+				numbers[i]=numbers[pivot];
+				numbers[pivot]=temp;
+			  }
+		  }
+		  int temp = numbers[low];
+		  numbers[low]=numbers[pivot];
+		  numbers[pivot]=temp;
+		  return pivot;
 	}
 }
