@@ -1,30 +1,31 @@
 
 public class QuickSort {
-
+	int count;
 	QuickSort(int[] numbers) {
-		quickSort(numbers,0,numbers.length-1);
-		for(int j=0;j<numbers.length;j++)
-			System.out.print(numbers[j]+" ");
-		System.out.println();
+		count=0;
+		quickSort(numbers, 0,numbers.length-1);
 	}
-	public void quickSort(int[] numbers, int low, int high){
+	public void quickSort(int[] numbers,int low, int high){
 		if(low<high){
-			int pivot = partition(numbers, low,high);
+			int pivot = partition(numbers,low,high);
 			quickSort(numbers,low,pivot);
 			quickSort(numbers,pivot+1,high);
 		}
 	}
 	public int partition(int[] numbers, int start, int end){
 		int key = numbers[start];
-		
-		while(start<end){
-			for(;numbers[start]<key;start++);
-			for(;numbers[end]>key;end--);
-			int temp= numbers[start];
-			numbers[start]=numbers[end];
-			numbers[end]=temp;
+		int i=start;
+		while(i<end){
+			for(;numbers[i++]<key&&i<end;i++) count++;
+			for(;numbers[end]>=key&&end>start;end--) count++;
+			if(i<end){
+				int temp= numbers[start];
+				numbers[start]=numbers[end];
+				numbers[end]=temp;
+			}
 		}
-		numbers[start]=key;
+		numbers[start]=numbers[end];
+		numbers[end]=key;
 		return start;
 	}
 }

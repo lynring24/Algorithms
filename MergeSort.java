@@ -1,9 +1,9 @@
 
 public class MergeSort {
-	MergeSort(int[] numbers) {
+	int count=0;
+	 MergeSort(int[] numbers) {
 		mergeSort(numbers,0,numbers.length-1);
 	}
-	
 	public void mergeSort(int[] numbers,int low, int high){
 		if(low<high){
 			int mid=Math.floorDiv(low+high,2);
@@ -17,11 +17,12 @@ public class MergeSort {
 		int rightIndex=mid+1;
 		int tempIndex=0;
 		int [] tempArray = new int [numbers.length];
-		while(leftIndex<=mid&&rightIndex<=high){
+		while(leftIndex<=mid && rightIndex<=high){
 			if(numbers[leftIndex]<numbers[rightIndex])
 				tempArray[tempIndex++]=numbers[leftIndex++];
 			else
 				tempArray[tempIndex++]=numbers[rightIndex++];
+			count++;
 		}
 		if(leftIndex>mid){
 			while(rightIndex<=high)
@@ -31,9 +32,8 @@ public class MergeSort {
 			while(leftIndex<=mid)
 				tempArray[tempIndex++]=numbers[leftIndex++];
 		}
-		for(tempIndex=0; low<=high;tempIndex++){
+		for(tempIndex=0; low<=high;tempIndex++)
 			numbers[low++]=tempArray[tempIndex];
-		}
 			
 	}
 }

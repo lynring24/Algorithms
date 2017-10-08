@@ -3,10 +3,12 @@ public class ThreeMM {
 	public int[] minMax(int [] numbers,int low, int high){
 		int [] minMax=new int[2];
 		if(low==high){
+			System.out.println("g(n) 1");
 			minMax[0]=numbers[low];
 			minMax[1]=minMax[0];
 		}
 		else if (low==high-1){
+			System.out.println("g(n) 2");
 			if(numbers[low]<numbers[high]){
 				minMax[0]=numbers[low];
 				minMax[1]=numbers[high];
@@ -33,3 +35,18 @@ public class ThreeMM {
 		return minMax;
 	}
 }
+/*
+ * 
+
+		else if (low==high-2){
+			System.out.println("g(n) 3");
+			minMax[0]=numbers[low];
+			minMax[1]=numbers[low];
+			for(int i=1;i<3;i++)
+			{
+				if(minMax[0]>numbers[low+i])minMax[0]=numbers[low+i];
+				if(minMax[1]<numbers[low+i])minMax[1]=numbers[low+i];
+			}
+		}		
+ *
+ */
