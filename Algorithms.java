@@ -2,15 +2,15 @@ import java.util.Scanner;
 
 public class Algorithms {
 	public static int ROW;
-	public static StaticRandomNumbers numbers;
+	public static OriginalNumbers numbers;
 	public static void main(String[] args) {
 		
 		System.out.print("Numbers in a set : ");
 		Scanner scan = new Scanner(System.in);
 		int size = scan.nextInt();
 		
-		numbers = new StaticRandomNumbers(size);
-		ROW=StaticRandomNumbers.ROW;
+		numbers = new OriginalNumbers(size);
+		ROW=OriginalNumbers.ROW;
 		
 		countExchangeSort();
 		countMergeSort();
