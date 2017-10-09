@@ -1,9 +1,11 @@
-
 public class QuickSort {
 	int count;
 	QuickSort(int[] numbers) {
 		count=0;
 		quickSort(numbers, 0,numbers.length-1);
+//		for(int i=0;i<numbers.length;i++)
+//			System.out.print(numbers[i]+" ");
+//		System.out.println();
 	}
 	public void quickSort(int[] numbers,int low, int high){
 		if(low<high){
