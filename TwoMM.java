@@ -1,10 +1,10 @@
 
-public class ThreeMM {
-	public int count3=0;
-	ThreeMM(int[] numbers){
+public class TwoMM {
+
+	public int count2=0;
+	TwoMM(int[] numbers){
 		minMax(numbers,0,numbers.length-1);
-		System.out.println("count3 : "+count3);
-		System.out.println();
+		System.out.println("count2 : "+count2);
 	}
 	public int[] minMax(int [] numbers,int low, int high){
 		int [] minMax=new int[2];
@@ -13,7 +13,7 @@ public class ThreeMM {
 			minMax[1]=minMax[0];
 		}
 		else if (low==high-1){
-			count3++;
+			count2++;
 			if(numbers[low]<numbers[high]){
 				minMax[0]=numbers[low];
 				minMax[1]=numbers[high];
@@ -21,26 +21,6 @@ public class ThreeMM {
 			else{
 				minMax[0]=numbers[high];
 				minMax[1]=numbers[low];
-			}
-		}
-		else if (low==high-2){
-			count3++;
-			if(numbers[low]<numbers[low+1]){
-				minMax[0]=numbers[low];
-				minMax[1]=numbers[low+1];
-			}
-			else{
-				minMax[0]=numbers[low+1];
-				minMax[1]=numbers[low];
-			}
-			count3++;
-			if(minMax[1]<numbers[high])
-				minMax[1]=numbers[high];
-			
-			else{ 
-				count3++;
-				if(minMax[0]>numbers[high])
-					minMax[0]=numbers[high];
 			}
 		}
 		else{
@@ -53,13 +33,13 @@ public class ThreeMM {
 			minMax2=minMax(numbers,mid1+1,mid2);
 			minMax3=minMax(numbers,mid2+1,high);
 			minMax[0]=(minMax1[0]<minMax2[0])?minMax1[0]:minMax2[0];
-			count3++;
+			count2++;
 			minMax[0]=(minMax[0]<minMax3[0])?minMax[0]:minMax3[0];
-			count3++;
+			count2++;
 			minMax[1]=(minMax1[1]>minMax2[1])?minMax1[1]:minMax2[1];
-			count3++;
+			count2++;
 			minMax[1]=(minMax[1]>minMax3[1])?minMax[1]:minMax3[1];
-			count3++;
+			count2++;
 		}
 		return minMax;
 	}

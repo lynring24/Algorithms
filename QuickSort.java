@@ -3,32 +3,23 @@ public class QuickSort {
 	QuickSort(int[] numbers) {
 		count=0;
 		quickSort(numbers, 0,numbers.length-1);
-//		for(int i=0;i<numbers.length;i++)
-//			System.out.print(numbers[i]+" ");
-//		System.out.println();
 	}
 	public void quickSort(int[] numbers,int low, int high){
-		if(low<high){
-			int pivot = partition(numbers,low,high);
-			quickSort(numbers,low,pivot);
-			quickSort(numbers,pivot+1,high);
+		if (low >= high) return;
+		int mid = (low + high) / 2;
+		int left = low, right = high;
+		while (left < right) {
+			while (numbers[left] > numbers[mid]) {left++; count++;}
+			while (numbers[right] < numbers[mid]) {right--; count++;}
+			if (left<right) {
+				int temp= numbers[left];
+ 				numbers[left]=numbers[right];
+ 				numbers[right]=temp;
+				left++; right--;
+			}
 		}
-	}
-	public int partition(int[] numbers, int low, int high){
-		int key = numbers[low];
-		int pivot = low;
-		  for(int i=low+1;i<=high;i++){
-				count++;
-			  if(numbers[i]<key){
-				pivot++; 
-				int temp = numbers[i];
-				numbers[i]=numbers[pivot];
-				numbers[pivot]=temp;
-			  }
-		  }
-		  int temp = numbers[low];
-		  numbers[low]=numbers[pivot];
-		  numbers[pivot]=temp;
-		  return pivot;
+
+		quickSort(numbers, low, mid);
+		quickSort(numbers,mid+1,high);
 	}
 }

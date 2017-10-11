@@ -3,9 +3,6 @@ public class MergeSort {
 	int count=0;
 	 MergeSort(int[] numbers) {
 		mergeSort(numbers,0,numbers.length-1);
-//		for(int i=0;i<numbers.length;i++)
-//			System.out.print(numbers[i]+" ");
-//		System.out.println();
 	}
 	public void mergeSort(int[] numbers,int low, int high){
 		if(low<high){
@@ -21,11 +18,11 @@ public class MergeSort {
 		int tempIndex=0;
 		int [] tempArray = new int [numbers.length];
 		while(leftIndex<=mid && rightIndex<=high){
-			count++;
 			if(numbers[leftIndex]<numbers[rightIndex])
 				tempArray[tempIndex++]=numbers[leftIndex++];
 			else
 				tempArray[tempIndex++]=numbers[rightIndex++];
+			count++;
 		}
 		if(leftIndex>mid){
 			while(rightIndex<=high)

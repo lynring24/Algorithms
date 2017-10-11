@@ -11,28 +11,22 @@ public class Algorithms {
 		
 		numbers = new OriginalNumbers(size);
 		ROW=OriginalNumbers.ROW;
-		
-		countExchangeSort();
-		countMergeSort();
-		countQuickSort();
-	}
-	public static void countExchangeSort(){
-		int count=0;
 		for(int i=0;i<ROW;i++)
-		   count+= new ExchangeSort(numbers.getClone(i)).count;
-		System.out.println("\nExchangeSort Average # Comparsion : "+(int)(count/ROW));
+		new ThreeMM(numbers.getClone(i));
+		//getAverage();
 	}
-	public static void countMergeSort(){
-		int count=0;
-		for(int i=0;i<ROW;i++)
-			   count+=new MergeSort(numbers.getClone(i)).count;
-			System.out.println("MergeSort Average # Comparsion : "+(int)(count/ROW));	
-	}
-	public static void countQuickSort(){
-		int count=0;
-		for(int i=0;i<ROW;i++)
-			count+=new QuickSort(numbers.getClone(i)).count;
-		System.out.println("QuickSort Average # Comparsion : "+(int)(count/ROW));	
+	public static void getAverage(){
+		int totalExchange=0;
+		int totalQuick=0;
+		int totalMerge=0;
+		for(int i=0;i<ROW;i++){
+		   totalExchange+= new ExchangeSort(numbers.getClone(i)).count;
+		   totalQuick+=new QuickSort(numbers.getClone(i)).count;
+		   totalMerge+=new MergeSort(numbers.getClone(i)).count;
+		}
+		System.out.println("\nExchangeSort Average # Comparsion : "+(int)(totalExchange/ROW));
+		System.out.println("MergeSort Average # Comparsion : "+(int)(totalMerge/ROW));
+		System.out.println("QuickSort Average # Comparsion : "+(int)(totalQuick/ROW));	
 	}
 	
 }
