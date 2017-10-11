@@ -3,6 +3,9 @@ public class MergeSort {
 	int count=0;
 	 MergeSort(int[] numbers) {
 		mergeSort(numbers,0,numbers.length-1);
+		for(int i=0;i<numbers.length;i++)
+			System.out.print(numbers[i]+" ");
+		System.out.println();
 	}
 	public void mergeSort(int[] numbers,int low, int high){
 		if(low<high){
