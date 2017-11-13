@@ -4,9 +4,9 @@ public class AscendingSort {
 	protected int leftIndex;
 	protected int rightIndex;
 	
-	AscendingSort(int [] numbers) {
-		this.numbers = numbers;
-		sortQuick(0, numbers.length-1);
+	AscendingSort(Numbers numbers) {
+		this.numbers = numbers.getNumbers();
+		sortQuick(0, this.numbers.length-1);
 		printSortedNumbers();
 	}
 	
