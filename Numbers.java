@@ -4,6 +4,7 @@ public class Numbers {
 	private  Scanner scanner = new Scanner(System.in);
 	private  int [] numbers;
 	private  int numberOfNumbers;
+	
 
 	public void getInputs() {
 		System.out.print("\n> The number of numbers:");
