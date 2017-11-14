@@ -1,30 +1,28 @@
 import java.util.Scanner;
 
-public class Menu {
+public class Main {
 	private static int choice = 4;
-	private static Scanner scanner = new Scanner(System.in);
-	private static Numbers numbers;
-	/*private static int [] numbers;
-	private static int numberOfNumbers;*/
+	private Scanner scanner = new Scanner(System.in);
+	private Numbers numbers;
 	
 	public static void main(String[] args) {
-		numbers = new Numbers();
+		Main main = new Main();
 		
-		showAuthorInfo();
-		
+		main.numbers = new Numbers();
+		main.printAuthorInfo();
 		do {
-			showBanners();
-			choice = scanner.nextInt();
-			operateChoice();
+			main.printMenu();
+			choice = main.scanner.nextInt();
+			main.operateChoice();
 		} while(choice != 4);	
 	}
 	
-	private static void showAuthorInfo() {
+	private void printAuthorInfo() {
 		System.out.println("[ ID: 1515386 ]");
 		System.out.println("[ Name: Á¤Çý¸° ]");
 	}
 	
-	private static void showBanners() {
+	private void printMenu() {
 		System.out.println();
 		System.out.println("1. Input numbers");
 		System.out.println("2. Print numbers in increasing order");
@@ -33,18 +31,18 @@ public class Menu {
 		System.out.print("\n>");
 	}
 	
-	private static void operateChoice() {
+	private  void operateChoice() {
 		switch (choice){
 			case 1: 
-				numbers.setSizeAndNumbers();
+				numbers.getInputs();
 				break;
 				
 			case 2:
-				new AscendingSort(numbers);
+				numbers.sortAscending();
 				break;
 				
 			case 3:
-				new DescendingSort(numbers);
+				numbers.sortDescending();
 				break;
 				
 			case 4:

@@ -1,6 +1,6 @@
 
 public class DescendingSort extends AscendingSort {
-	DescendingSort(Numbers numbers){
+	DescendingSort(int[] numbers){
 		super(numbers);
 	}
 	

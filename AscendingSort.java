@@ -3,29 +3,28 @@ public class AscendingSort {
 	protected int [] numbers;
 	protected int leftIndex;
 	protected int rightIndex;
+	protected int pivot;
 	
-	AscendingSort(Numbers numbers) {
-		this.numbers = numbers.getNumbers();
-		sortQuick(0, this.numbers.length-1);
-		printSortedNumbers();
+	AscendingSort(int[] numbers) {
+		this.numbers = numbers;
 	}
 	
-	protected void sortQuick(int lowIndex, int highIndex) {
+	protected void sortNumbers(int lowIndex, int highIndex) {
 		if (lowIndex > highIndex) 
 			 return ; 
 		
 		sortByPartition(lowIndex, highIndex);
 		
 		if (lowIndex < rightIndex) 
-			sortQuick(lowIndex, rightIndex);
+			sortNumbers(lowIndex, rightIndex);
 		
 		if (leftIndex < highIndex) 
-			sortQuick(leftIndex, highIndex);
+			sortNumbers(leftIndex, highIndex);
 	}
 	
 	protected void sortByPartition(int lowIndex, int highIndex) {
 		int middle = Math.floorDiv(lowIndex+ highIndex,2);
-		int pivot = numbers[middle];
+		pivot = numbers[middle];
 
 		leftIndex = lowIndex;
 		rightIndex = highIndex;
@@ -52,6 +51,7 @@ public class AscendingSort {
 	
 	private void swap(int index1, int index2) {
 		int temp = numbers[index1];
+		
 		numbers[index1] = numbers[index2];
 		numbers[index2] = temp;
 		rightIndex--;
