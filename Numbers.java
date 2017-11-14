@@ -11,6 +11,7 @@ public class Numbers {
 			setNumbers();
 		} catch (Exception e) {
 			System.out.println("Unappropriate inputs");
+			scanner.nextLine();
 		}
 	}
 
