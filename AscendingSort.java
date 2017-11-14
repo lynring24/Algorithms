@@ -30,10 +30,10 @@ public class AscendingSort {
 		rightIndex = highIndex;
 		
 		while (leftIndex <= rightIndex) {
-			while (isLeftElligibleWithPivot(lowIndex)) 
+			while (isLeftSmallerThanPivot(lowIndex)) 
 				leftIndex++;
 			
-			while (isRightElligibleWithPivot(highIndex)) 
+			while (isRightBiggerThanPivot(highIndex)) 
 				rightIndex--;
 			
 			if (leftIndex <= rightIndex) 
@@ -41,11 +41,11 @@ public class AscendingSort {
 		}
 	}
 	
-	protected boolean isLeftElligibleWithPivot(int lowIndex){
+	protected boolean isLeftSmallerThanPivot(int lowIndex) {
 		return (numbers[leftIndex] < pivot && lowIndex < rightIndex);
 	}
 	
-	protected boolean isRightElligibleWithPivot( int highIndex){
+	protected boolean isRightBiggerThanPivot(int highIndex) {
 		return (pivot < numbers[rightIndex] && leftIndex < highIndex);
 	}
 	

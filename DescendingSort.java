@@ -4,11 +4,11 @@ public class DescendingSort extends AscendingSort {
 		super(numbers);
 	}
 	
-	protected boolean isLeftElligibleWithPivot(int lowIndex){
+	protected boolean isLeftSmallerThanPivot(int lowIndex){
 		return (numbers[leftIndex] > pivot && lowIndex < rightIndex);
 	}
 	
-	protected boolean isRightElligibleWithPivot(int highIndex){
+	protected boolean isRightBiggerThanPivot(int highIndex){
 		return (pivot > numbers[rightIndex] && leftIndex < highIndex);
 	}
 }
