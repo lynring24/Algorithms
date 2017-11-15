@@ -2,11 +2,11 @@ import java.util.Scanner;
 import java.util.logging.*;
 
 public class Main {
+	private static final Logger LOGGER = Logger.getLogger(Main.class.getName());
+	private static final int TERMINATION = 4;
 	private static int choice = -1;
-	private final static int TERMINATE = 4;
 	private Scanner scanner = new Scanner(System.in);
 	private NumberGenerator generator;
-	private static final Logger LOGGER = Logger.getLogger(Main.class.getName());
 
 	public static void main(String[] args) {
 		Main main = new Main();
@@ -16,7 +16,7 @@ public class Main {
 		do {
 			main.printMenu();
 			main.getInputAndOperate();
-		} while (choice != TERMINATE);
+		} while (choice != TERMINATION);
 	}
 
 	private void printAuthorInfo() {
@@ -39,29 +39,33 @@ public class Main {
 			operateChoice();
 		} catch (Exception inputExeption) {
 			LOGGER.log(Level.SEVERE, "inappropriate input", inputExeption);
-			choice = TERMINATE; 
+			choice = TERMINATION;
 		}
 	}
-	
-	private void operateChoice() throws Exception {
+
+	private void operateChoice() {
+		final int INPUT = 1;
+		final int ASCENDINGORDER = 2;
+		final int DESCENDINGORDER = 3;
+
 		switch (choice) {
-		case 1:
+		case INPUT:
 			generator.getInputs();
 			break;
 
-		case 2:
+		case ASCENDINGORDER:
 			AscendingSorter ascendingSorter = new AscendingSorter(generator.getNumbers());
 			ascendingSorter.sort();
 			ascendingSorter.printSortedNumbers();
 			break;
 
-		case 3:
+		case DESCENDINGORDER:
 			DescendingSorter descendingSorter = new DescendingSorter(generator.getNumbers());
 			descendingSorter.sort();
 			descendingSorter.printSortedNumbers();
 			break;
 
-		case TERMINATE:
+		case TERMINATION:
 			System.out.println("[Termination]");
 			break;
 		}

@@ -5,7 +5,7 @@ public class NumberGenerator {
 	private int[] numbers;
 	private int numberOfNumbers;
 
-	public void getInputs() throws Exception{
+	public void getInputs() {
 		try {
 			setNumberOfNumbers();
 			setNumbers();
