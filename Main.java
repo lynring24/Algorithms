@@ -2,7 +2,8 @@ import java.util.Scanner;
 import java.util.logging.*;
 
 public class Main {
-	private static int choice = 4;
+	private static int choice = -1;
+	private final static int TERMINATE = 4;
 	private Scanner scanner = new Scanner(System.in);
 	private NumberGenerator generator;
 	private static final Logger LOGGER = Logger.getLogger(Main.class.getName());
@@ -14,15 +15,8 @@ public class Main {
 		main.printAuthorInfo();
 		do {
 			main.printMenu();
-			try {
-				choice = main.scanner.nextInt();
-				main.operateChoice();
-			} catch (Exception inputExeption) {
-				LOGGER.log(Level.SEVERE, "inappropriate input", inputExeption);
-				break;
-			}
-
-		} while (choice != 4);
+			main.getInputAndOperate();
+		} while (choice != TERMINATE);
 	}
 
 	private void printAuthorInfo() {
@@ -39,6 +33,16 @@ public class Main {
 		System.out.print("\n>");
 	}
 
+	private void getInputAndOperate() {
+		try {
+			choice = scanner.nextInt();
+			operateChoice();
+		} catch (Exception inputExeption) {
+			LOGGER.log(Level.SEVERE, "inappropriate input", inputExeption);
+			choice = TERMINATE; 
+		}
+	}
+	
 	private void operateChoice() throws Exception {
 		switch (choice) {
 		case 1:
@@ -57,7 +61,7 @@ public class Main {
 			descendingSorter.printSortedNumbers();
 			break;
 
-		case 4:
+		case TERMINATE:
 			System.out.println("[Termination]");
 			break;
 		}
