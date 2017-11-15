@@ -3,12 +3,12 @@ import java.util.Scanner;
 public class Main {
 	private static int choice = 4;
 	private Scanner scanner = new Scanner(System.in);
-	private Numbers numbers;
+	private NumberGenerator generator;
 	
 	public static void main(String[] args) {
 		Main main = new Main();
 		
-		main.numbers = new Numbers();
+		main.generator = new NumberGenerator();
 		main.printAuthorInfo();
 		do {
 			main.printMenu();
@@ -34,15 +34,19 @@ public class Main {
 	private  void operateChoice() {
 		switch (choice){
 			case 1: 
-				numbers.getInputs();
+				generator.getInputs();
 				break;
 				
 			case 2:
-				numbers.sortAscending();
+				AscendingSorter ascendingSorter = new AscendingSorter(generator.getNumbers());
+				ascendingSorter.sort();
+				ascendingSorter.printSortedNumbers();
 				break;
 				
 			case 3:
-				numbers.sortDescending();
+				DescendingSorter descendingSorter = new DescendingSorter(generator.getNumbers());
+				descendingSorter.sort();
+				descendingSorter.printSortedNumbers();
 				break;
 				
 			case 4:

@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Numbers {
+public class NumberGenerator {
 	private Scanner scanner = new Scanner(System.in);
 	private int[] numbers;
 	private int numberOfNumbers;
@@ -26,19 +26,12 @@ public class Numbers {
 
 		for (int i = 0; i < numberOfNumbers; i++)
 			numbers[i] = scanner.nextInt();
+		
 		System.out.println("Input Completed");
 
 	}
 
-	public void sortAscending() {
-		AscendingSort sort = new AscendingSort(numbers);
-		sort.sortNumbers(0, numbers.length - 1);
-		sort.printSortedNumbers();
-	}
-
-	public void sortDescending() {
-		DescendingSort sort = new DescendingSort(numbers);
-		sort.sortNumbers(0, numbers.length - 1);
-		sort.printSortedNumbers();
+	public int [] getNumbers() {
+		return numbers;
 	}
 }

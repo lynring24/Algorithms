@@ -1,25 +1,30 @@
 
-public class AscendingSort {
+public class AscendingSorter {
 	protected int [] numbers;
 	protected int leftIndex;
 	protected int rightIndex;
 	protected int pivot;
 	
-	AscendingSort(int[] numbers) {
+	AscendingSorter(int[] numbers) {
 		this.numbers = numbers;
 	}
 	
-	protected void sortNumbers(int lowIndex, int highIndex) {
+	public void sort() {
+		sort(0, numbers.length - 1);
+	}
+	
+	
+	protected void sort(int lowIndex, int highIndex) {
 		if (lowIndex > highIndex) 
 			 return ; 
 		
 		sortByPartition(lowIndex, highIndex);
 		
 		if (lowIndex < rightIndex) 
-			sortNumbers(lowIndex, rightIndex);
+			sort(lowIndex, rightIndex);
 		
 		if (leftIndex < highIndex) 
-			sortNumbers(leftIndex, highIndex);
+			sort(leftIndex, highIndex);
 	}
 	
 	protected void sortByPartition(int lowIndex, int highIndex) {
@@ -30,10 +35,10 @@ public class AscendingSort {
 		rightIndex = highIndex;
 		
 		while (leftIndex <= rightIndex) {
-			while (isLeftSmallerThanPivot(lowIndex)) 
+			while (isPivotBiggerThan(lowIndex)) 
 				leftIndex++;
 			
-			while (isRightBiggerThanPivot(highIndex)) 
+			while (isPivotSmallerThan(highIndex)) 
 				rightIndex--;
 			
 			if (leftIndex <= rightIndex) 
@@ -41,11 +46,11 @@ public class AscendingSort {
 		}
 	}
 	
-	protected boolean isLeftSmallerThanPivot(int lowIndex) {
+	protected boolean isPivotBiggerThan(int lowIndex) {
 		return (numbers[leftIndex] < pivot && lowIndex < rightIndex);
 	}
 	
-	protected boolean isRightBiggerThanPivot(int highIndex) {
+	protected boolean isPivotSmallerThan(int highIndex) {
 		return (pivot < numbers[rightIndex] && leftIndex < highIndex);
 	}
 	
@@ -59,9 +64,9 @@ public class AscendingSort {
 	}
 	
 	protected void printSortedNumbers() {
-		for (int i = 0; i < numbers.length; i++) {
+		for (int i = 0; i < numbers.length; i++) 
 			System.out.print(numbers[i]+" ");
-		}
+		
 		System.out.println();
 	}
 }
