@@ -74,9 +74,11 @@ public class Floyd {
 	private void printPath() {
 		printD();
 		printP();
-		int src = Integer.parseInt(args[args.length - 2]) - 1;
-		int des = Integer.parseInt(args[args.length - 1]) - 1;
-		// path(src, des);
+		int src = Integer.parseInt(args[args.length - 2]) -1;
+		System.out.print((src+1)+"-");
+		int des = Integer.parseInt(args[args.length - 1]) -1;
+		path(src, des);
+		System.out.print(des+1);
 	}
 
 	private void printD() {
@@ -100,12 +102,10 @@ public class Floyd {
 	}
 
 	private void path(int q, int r) {
-		if (q >= r)
-			return;
 		if (p[q][r] != 0) {
-			path(q, p[q][r]);
-			System.out.print("-" + p[q][r]);
-			path(p[q][r], r);
+			path(q, p[q][r]-1);
+			System.out.print(p[q][r]+"-");
+			path(p[q][r]-1, r);
 		}
 	}
 
