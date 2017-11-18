@@ -55,19 +55,24 @@ public class Floyd {
 		for (int k = 0; k < n; k++)
 			for (int i = 0; i < n; i++)
 				for (int j = 0; j < n; j++) {
-					if ((d[i][j] > d[i][k] + d[k][j])&&(i!=j)) {
+					if (needUpdate(k, i, j)) {
 						d[i][j] = d[i][k] + d[k][j];
 						p[i][j] = k;
 					}
 				}
 	}
-
-
+	private boolean needUpdate(int k, int i, int j){
+		boolean isDirected = w[i][j]!=-1;
+		boolean isNotSelf = i!=j;
+		boolean isSmaller = d[i][j] > d[i][k] + d[k][j];
+		return isSmaller&&isNotSelf&&isDirected;
+	}
 	private void printPath() {
 		printD();
 		printP();
-		int end = args.length-2;
-		path(Integer.parseInt(args[end])-1, Integer.parseInt(args[++end])-1);
+		int src = Integer.parseInt(args[args.length-2])-1;
+		int des = Integer.parseInt(args[args.length-1])-1;
+		path(src, des);
 	}
 
 	private void printD() {
