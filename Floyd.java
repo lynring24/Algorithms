@@ -62,10 +62,10 @@ public class Floyd {
 				}
 	}
 	private boolean needUpdate(int k, int i, int j){
-		boolean isDirected = w[i][j]!=-1;
+		boolean isUndirected = w[i][j]==-1;
 		boolean isNotSelf = i!=j;
 		boolean isSmaller = d[i][j] > d[i][k] + d[k][j];
-		return isSmaller&&isNotSelf&&isDirected;
+		return (isSmaller&&isNotSelf)||isUndirected;
 	}
 	private void printPath() {
 		printD();
