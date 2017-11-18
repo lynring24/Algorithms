@@ -19,7 +19,7 @@ public class Floyd {
 
 	private void getInput() {
 		Scanner scan = new Scanner(System.in);
-		String input= scan.nextLine();
+		String input = scan.nextLine();
 		input = input.replace(" ", "");
 		input = input.replace("\"", "");
 		args = input.split(",");
@@ -27,7 +27,7 @@ public class Floyd {
 
 	private void parseInput() {
 		int end = args.length;
-		int k=0;
+		int k = 0;
 		n = Integer.parseInt(args[k++]);
 		w = new int[n][n];
 		for (int i = 0; i < n; i++) {
@@ -56,30 +56,34 @@ public class Floyd {
 			for (int i = 0; i < n; i++)
 				for (int j = 0; j < n; j++) {
 					if (needUpdate(k, i, j)) {
-						d[i][j] = d[i][k] + d[k][j];
-						p[i][j] = k;
+						if (d[i][k] != -1 && d[k][j] != -1) {
+							d[i][j] = d[i][k] + d[k][j];
+							p[i][j] = k;
+						}
 					}
 				}
 	}
-	private boolean needUpdate(int k, int i, int j){
-		boolean isUndirected = w[i][j]==-1;
-		boolean isNotSelf = i!=j;
+
+	private boolean needUpdate(int k, int i, int j) {
+		boolean isUndirected = d[i][j] == -1;
+		boolean isNotSelf = i != j;
 		boolean isSmaller = d[i][j] > d[i][k] + d[k][j];
-		return (isSmaller&&isNotSelf)||isUndirected;
+		return (isSmaller || isUndirected) && isNotSelf;
 	}
+
 	private void printPath() {
 		printD();
 		printP();
-		int src = Integer.parseInt(args[args.length-2])-1;
-		int des = Integer.parseInt(args[args.length-1])-1;
-		path(src, des);
+		int src = Integer.parseInt(args[args.length - 2]) - 1;
+		int des = Integer.parseInt(args[args.length - 1]) - 1;
+		// path(src, des);
 	}
 
 	private void printD() {
 		System.out.println("D");
 		for (int i = 0; i < n; i++) {
 			for (int j = 0; j < n; j++)
-				System.out.print(d[i][j]);
+				System.out.print(String.format("%3d", d[i][j]));
 			System.out.println();
 		}
 		System.out.println();
@@ -89,14 +93,17 @@ public class Floyd {
 		System.out.println("P");
 		for (int i = 0; i < n; i++) {
 			for (int j = 0; j < n; j++)
-				System.out.print(p[i][j]);
+				if (i != j)
+					System.out.print(String.format("%3d", p[i][j] + 1));
+				else
+					System.out.print(String.format("%3d", p[i][j]));
 			System.out.println();
 		}
 		System.out.println();
 	}
 
 	private void path(int q, int r) {
-		if(q>=r) 
+		if (q >= r)
 			return;
 		if (p[q][r] != 0) {
 			path(q, p[q][r]);
