@@ -5,8 +5,7 @@ public class Floyd {
 	int[][] d;
 	int[][] w;
 	int[][] p;
-	int n, src, des;
-	String input;
+	int n;
 	String[] args;
 
 	public static void main(String[] args) {
@@ -14,52 +13,28 @@ public class Floyd {
 		Floyd main = new Floyd();
 		main.getInput();
 		main.parseInput();
-		main.printparse();
-		// main.floyd();
-		// main.printPath();
+		main.floyd();
+		main.printPath();
 	}
 
 	private void getInput() {
 		Scanner scan = new Scanner(System.in);
-		input = scan.nextLine();
+		String input= scan.nextLine();
 		input = input.replace(" ", "");
 		input = input.replace("\"", "");
-		System.out.println(input);
 		args = input.split(",");
-	}
-
-	private void printInput() {
-		System.out.println("printInput()");
-		for (int i = 0; i < args.length; i++)
-			System.out.println(args[i]);
 	}
 
 	private void parseInput() {
 		int end = args.length;
-
-		n = Integer.parseInt(args[0]);
-
+		int k=0;
+		n = Integer.parseInt(args[k++]);
 		w = new int[n][n];
-		for (int i = 0,k = 1; i < n; i++) {
+		for (int i = 0; i < n; i++) {
 			for (int j = 0; j < n; j++) {
 				w[i][j] = Integer.parseInt(args[k++]);
 			}
 		}
-		src = Integer.parseInt(args[end - 2]);
-		des = Integer.parseInt(args[end - 1]);
-	}
-	
-	private void printparse() {
-		System.out.println("printparse()");
-		System.out.println(n);
-		for (int i = 0; i < n; i++) {
-			for (int j = 0; j < n; j++) {
-				System.out.print(w[i][j] + " ");
-			}
-			System.out.println();
-		}
-		System.out.println(src);
-		System.out.println(des);
 	}
 
 	private void floyd() {
@@ -69,6 +44,7 @@ public class Floyd {
 
 	private void initialize() {
 		d = new int[n][n];
+		p = new int[n][n];
 		for (int i = 0; i < n; i++)
 			for (int j = 0; j < n; j++)
 				d[i][j] = w[i][j];
@@ -79,21 +55,19 @@ public class Floyd {
 		for (int k = 0; k < n; k++)
 			for (int i = 0; i < n; i++)
 				for (int j = 0; j < n; j++) {
-					if (needsUpdate(k, i, j)) {
+					if ((d[i][j] > d[i][k] + d[k][j])&&(i!=j)) {
 						d[i][j] = d[i][k] + d[k][j];
 						p[i][j] = k;
 					}
 				}
 	}
 
-	private boolean needsUpdate(int k, int i, int j) {
-		return (d[i][j] > d[i][k] + d[k][j]) || (d[i][j] == -1);
-	}
 
 	private void printPath() {
 		printD();
 		printP();
-		path(src, des);
+		int end = args.length-2;
+		path(Integer.parseInt(args[end])-1, Integer.parseInt(args[++end])-1);
 	}
 
 	private void printD() {
@@ -101,6 +75,7 @@ public class Floyd {
 		for (int i = 0; i < n; i++) {
 			for (int j = 0; j < n; j++)
 				System.out.print(d[i][j]);
+			System.out.println();
 		}
 		System.out.println();
 	}
@@ -110,15 +85,18 @@ public class Floyd {
 		for (int i = 0; i < n; i++) {
 			for (int j = 0; j < n; j++)
 				System.out.print(p[i][j]);
+			System.out.println();
 		}
 		System.out.println();
 	}
 
-	private void path(int src, int des) {
-		if (p[src][des] != 0) {
-			path(src, p[src][des]);
-			System.out.print(" " + p[src][des]);
-			path(p[src][des], des);
+	private void path(int q, int r) {
+		if(q>=r) 
+			return;
+		if (p[q][r] != 0) {
+			path(q, p[q][r]);
+			System.out.print("-" + p[q][r]);
+			path(p[q][r], r);
 		}
 	}
 
