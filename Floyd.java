@@ -58,7 +58,7 @@ public class Floyd {
 					if (needUpdate(k, i, j)) {
 						if (d[i][k] != -1 && d[k][j] != -1) {
 							d[i][j] = d[i][k] + d[k][j];
-							p[i][j] = k;
+							p[i][j] = k+1;
 						}
 					}
 				}
@@ -93,9 +93,6 @@ public class Floyd {
 		System.out.println("P");
 		for (int i = 0; i < n; i++) {
 			for (int j = 0; j < n; j++)
-				if (i != j)
-					System.out.print(String.format("%3d", p[i][j] + 1));
-				else
 					System.out.print(String.format("%3d", p[i][j]));
 			System.out.println();
 		}
