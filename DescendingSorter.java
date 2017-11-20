@@ -4,11 +4,11 @@ public class DescendingSorter extends AscendingSorter {
 		super(numbers);
 	}
 	
-	protected boolean isPivotBiggerThan(int lowIndex){
+	protected boolean isPivotBiggerThanLeft(int lowIndex){
 		return (numbers[leftIndex] > pivot && lowIndex < rightIndex);
 	}
 	
-	protected boolean isPivotSmallerThan(int highIndex){
+	protected boolean isPivotSmallerThanRight(int highIndex){
 		return (pivot > numbers[rightIndex] && leftIndex < highIndex);
 	}
 }

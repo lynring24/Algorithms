@@ -1,21 +1,22 @@
 import java.util.Scanner;
 import java.util.logging.*;
 
-public class Main {
-	private static final Logger LOGGER = Logger.getLogger(Main.class.getName());
+public class SortingProcessor {
+	private static final Logger LOGGER = Logger.getLogger(SortingProcessor.class.getName());
 	private static final int TERMINATION = 4;
 	private static int choice = -1;
 	private Scanner scanner = new Scanner(System.in);
 	private NumberGenerator generator;
-
+	private AscendingSorter sorter;
+	
 	public static void main(String[] args) {
-		Main main = new Main();
-		main.generator = new NumberGenerator();
+		SortingProcessor processor = new SortingProcessor();
+		processor.generator = new NumberGenerator();
 
-		main.printAuthorInfo();
+		processor.printAuthorInfo();
 		do {
-			main.printMenu();
-			main.getInputAndOperate();
+			processor.printMenu();
+			processor.operate();
 		} while (choice != TERMINATION);
 	}
 
@@ -24,6 +25,7 @@ public class Main {
 		System.out.println("[ Name: Á¤Çý¸° ]");
 	}
 
+	
 	private void printMenu() {
 		System.out.println();
 		System.out.println("1. Input numbers");
@@ -33,7 +35,7 @@ public class Main {
 		System.out.print("\n>");
 	}
 
-	private void getInputAndOperate() {
+	private void operate() {
 		try {
 			choice = scanner.nextInt();
 			operateChoice();
@@ -54,15 +56,13 @@ public class Main {
 			break;
 
 		case ASCENDINGORDER:
-			AscendingSorter ascendingSorter = new AscendingSorter(generator.getNumbers());
-			ascendingSorter.sort();
-			ascendingSorter.printSortedNumbers();
+			sorter = new AscendingSorter(generator.getNumbers());
+			sort();
 			break;
 
 		case DESCENDINGORDER:
-			DescendingSorter descendingSorter = new DescendingSorter(generator.getNumbers());
-			descendingSorter.sort();
-			descendingSorter.printSortedNumbers();
+			sorter = new DescendingSorter(generator.getNumbers());
+			sort();
 			break;
 
 		case TERMINATION:
@@ -70,5 +70,11 @@ public class Main {
 			break;
 		}
 	}
+	
+	private void sort() {
+		sorter.sort();
+		sorter.printSortedNumbers();
+	}
+	
 
 }

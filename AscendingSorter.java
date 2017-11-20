@@ -15,10 +15,13 @@ public class AscendingSorter {
 	
 	
 	protected void sort(int lowIndex, int highIndex) {
+		/*
+		call sort for subset of left side and right side each*/
+		
 		if (lowIndex > highIndex) 
 			 return ; 
 		
-		sortByPartition(lowIndex, highIndex);
+		sortByMiddle(lowIndex, highIndex);
 		
 		if (lowIndex < rightIndex) 
 			sort(lowIndex, rightIndex);
@@ -27,7 +30,8 @@ public class AscendingSorter {
 			sort(leftIndex, highIndex);
 	}
 	
-	protected void sortByPartition(int lowIndex, int highIndex) {
+	protected void sortByMiddle(int lowIndex, int highIndex) {
+
 		int middle = Math.floorDiv(lowIndex+ highIndex,2);
 		pivot = numbers[middle];
 
@@ -35,10 +39,10 @@ public class AscendingSorter {
 		rightIndex = highIndex;
 		
 		while (leftIndex <= rightIndex) {
-			while (isPivotBiggerThan(lowIndex)) 
+			while (isPivotBiggerThanLeft(lowIndex)) 
 				leftIndex++;
 			
-			while (isPivotSmallerThan(highIndex)) 
+			while (isPivotSmallerThanRight(highIndex)) 
 				rightIndex--;
 			
 			if (leftIndex <= rightIndex) 
@@ -46,19 +50,20 @@ public class AscendingSorter {
 		}
 	}
 	
-	protected boolean isPivotBiggerThan(int lowIndex) {
+
+	protected boolean isPivotBiggerThanLeft(int lowIndex) {
 		return (numbers[leftIndex] < pivot && lowIndex < rightIndex);
 	}
 	
-	protected boolean isPivotSmallerThan(int highIndex) {
+	protected boolean isPivotSmallerThanRight(int highIndex) {
 		return (pivot < numbers[rightIndex] && leftIndex < highIndex);
 	}
 	
-	private void swap(int index1, int index2) {
-		int temp = numbers[index1];
+	private void swap(int left, int right) {
+		int temperate = numbers[left];
 		
-		numbers[index1] = numbers[index2];
-		numbers[index2] = temp;
+		numbers[left] = numbers[right];
+		numbers[right] = temperate;
 		rightIndex--;
 		leftIndex++;
 	}
