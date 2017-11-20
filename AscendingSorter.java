@@ -35,10 +35,10 @@ public class AscendingSorter {
 		rightIndex = highIndex;
 		
 		while (leftIndex <= rightIndex) {
-			while (isPivotBiggerThanLeft(lowIndex)) 
+			while (isPivotBiggerThanLeftIn(lowIndex)) 
 				leftIndex++;
 			
-			while (isPivotSmallerThanRight(highIndex)) 
+			while (isPivotSmallerThanRightIn(highIndex)) 
 				rightIndex--;
 			
 			if (leftIndex <= rightIndex) 
@@ -47,11 +47,11 @@ public class AscendingSorter {
 	}
 	
 
-	protected boolean isPivotBiggerThanLeft(int lowIndex) {
+	protected boolean isPivotBiggerThanLeftIn(int lowIndex) {
 		return (numbers[leftIndex] < pivot && lowIndex < rightIndex);
 	}
 	
-	protected boolean isPivotSmallerThanRight(int highIndex) {
+	protected boolean isPivotSmallerThanRightIn(int highIndex) {
 		return (pivot < numbers[rightIndex] && leftIndex < highIndex);
 	}
 	
