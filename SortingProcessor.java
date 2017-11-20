@@ -5,19 +5,14 @@ public class SortingProcessor {
 	private static final Logger LOGGER = Logger.getLogger(SortingProcessor.class.getName());
 	private static final int TERMINATION = 4;
 	private static int choice = -1;
-	private Scanner scanner = new Scanner(System.in);
 	private NumberGenerator generator;
-	private Sorter sorter;
 	
 	public static void main(String[] args) {
 		SortingProcessor processor = new SortingProcessor();
 		processor.generator = new NumberGenerator();
 
 		processor.printAuthorInfo();
-		do {
-			processor.printMenu();
-			processor.operate();
-		} while (choice != TERMINATION);
+		processor.execute();
 	}
 
 	private void printAuthorInfo() {
@@ -25,6 +20,12 @@ public class SortingProcessor {
 		System.out.println("[ Name: Á¤Çý¸° ]");
 	}
 
+	private void execute() {
+		do {
+			printMenu();
+			operate();
+		} while (choice != TERMINATION);
+	}
 	
 	private void printMenu() {
 		System.out.println();
@@ -36,6 +37,7 @@ public class SortingProcessor {
 	}
 
 	private void operate() {
+		Scanner scanner = new Scanner(System.in);
 		try {
 			choice = scanner.nextInt();
 			operateChoice();
@@ -69,8 +71,8 @@ public class SortingProcessor {
 		}
 	}
 	
-	private void sortWith(Sorter input) {
-		sorter = input;
+	private void sortWith(Sorter selectedOne) {
+		Sorter sorter = selectedOne;
 		sorter.printResult(generator.getNumbers());
 	}
 	
