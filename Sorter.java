@@ -5,17 +5,16 @@ public abstract class Sorter {
 	protected int rightIndex;
 	protected int pivot;
 	
-	public void printResult(int[] numbers) {
+	public void sort(int[] numbers) {
 		this.numbers = numbers;
 		sort(0, numbers.length - 1);
-		printSortedNumbers();
 	}
 	
 	protected void sort(int lowerLimit, int upperLimit) {
 		if (lowerLimit >= upperLimit) 
 			 return ; 
 		
-		sortByMiddle(lowerLimit, upperLimit);
+		sortByMiddle( lowerLimit, upperLimit );
 		sort(lowerLimit, rightIndex);
 		sort(leftIndex, upperLimit);
 	}
@@ -27,14 +26,9 @@ public abstract class Sorter {
 		rightIndex = upperLimit;
 		
 		while (isSortNotFinished()) {
-			findLeftToSortWithin(lowerLimit);
-			findRightToSortWithin(upperLimit);
-			
-			if (isSortNotFinished()) { 
-				swap(leftIndex, rightIndex);		
-				rightIndex--;
-				leftIndex++;	
-			}
+			lookNumberToSortFromLeft();
+			lookNumberToSortFromRight();
+			exchange(); 
 		}
 	}
 	
@@ -42,17 +36,25 @@ public abstract class Sorter {
 		return leftIndex <= rightIndex;
 	}
 	
-	abstract protected void findLeftToSortWithin(int lowerLimit);
+	abstract protected void lookNumberToSortFromLeft();
 	
-	abstract protected void findRightToSortWithin(int upperLimit);
+	abstract protected void lookNumberToSortFromRight();
 	
-	private void swap(int left, int right) {
-		int temperate = numbers[left];
-		numbers[left] = numbers[right];
-		numbers[right] = temperate;
+	private void exchange() { 
+		if (isSortNotFinished()) { 
+			swap();		
+			rightIndex--;
+			leftIndex++;	
+		}
 	}
 	
-	protected void printSortedNumbers() {
+	private void swap() {
+		int temperate = numbers[leftIndex];
+		numbers[leftIndex] = numbers[rightIndex];
+		numbers[rightIndex] = temperate;
+	}
+	
+	protected void printResult() {
 		for (int i = 0; i < numbers.length; i++) 
 			System.out.print(numbers[i]+" ");
 		

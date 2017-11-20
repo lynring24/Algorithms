@@ -70,7 +70,8 @@ public class SortingProcessor {
 	
 	private void printResultWith(Sorter selectedOne) {
 		Sorter sorter = selectedOne;
-		sorter.printResult(generator.getNumbers());
+		sorter.sort(generator.getNumbers());
+		sorter.printResult();
 	}
 	
 	private void handleException() {

@@ -4,13 +4,13 @@ public class AscendingSorter extends Sorter {
 		super();
 	}
 
-	protected void findLeftToSortWithin(int lowerLimit){
-		while (numbers[leftIndex] < pivot && lowerLimit < rightIndex) 
+	protected void lookNumberToSortFromLeft(){
+		while (numbers[leftIndex] < pivot) 
 			leftIndex++;
 	}
 	
-	protected void findRightToSortWithin(int upperLimit){
-		while (pivot < numbers[rightIndex] && leftIndex < upperLimit) 
+	protected void lookNumberToSortFromRight(){
+		while (pivot < numbers[rightIndex] ) 
 			rightIndex--;
 	}
 }
