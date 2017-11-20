@@ -7,7 +7,7 @@ public class SortingProcessor {
 	private static int choice = -1;
 	private Scanner scanner = new Scanner(System.in);
 	private NumberGenerator generator;
-	private AscendingSorter sorter;
+	private Sorter sorter;
 	
 	public static void main(String[] args) {
 		SortingProcessor processor = new SortingProcessor();
@@ -56,7 +56,7 @@ public class SortingProcessor {
 			break;
 
 		case ASCENDINGORDER:
-			sorter = new AscendingSorter(generator.getNumbers());
+			sorter = new Sorter(generator.getNumbers());
 			sort();
 			break;
 

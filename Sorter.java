@@ -1,11 +1,11 @@
 
-public class AscendingSorter {
+public class Sorter {
 	protected int [] numbers;
 	protected int leftIndex;
 	protected int rightIndex;
 	protected int pivot;
 	
-	AscendingSorter(int[] numbers) {
+	Sorter(int[] numbers) {
 		this.numbers = numbers;
 	}
 	
@@ -28,19 +28,23 @@ public class AscendingSorter {
 	}
 	
 	protected void sortByMiddle(int lowerLimit, int upperLimit) {
-		int middle = Math.floorDiv(lowerLimit+ upperLimit,2);
+		int middle = Math.floorDiv(lowerLimit+ upperLimit, 2);
 		pivot = numbers[middle];
 
 		leftIndex = lowerLimit;
 		rightIndex = upperLimit;
 		
-		while (leftIndex <= rightIndex) {
+		while (isSortNotFinished()) {
 			findNumberToSwapFromLeft(lowerLimit);
 			findNumberToSwapFromRight(upperLimit);
 			
-			if (leftIndex <= rightIndex) 
+			if (isSortNotFinished()) 
 				swap(leftIndex, rightIndex);	
 		}
+	}
+	
+	private boolean isSortNotFinished() {
+		return leftIndex <= rightIndex;
 	}
 	
 	protected void findNumberToSwapFromLeft(int lowerLimit){
