@@ -56,12 +56,12 @@ public class SortingProcessor {
 			break;
 
 		case ASCENDINGORDER:
-			sorter = new Sorter(generator.getNumbers());
+			sorter = new AscendingSorter();
 			sort();
 			break;
 
 		case DESCENDINGORDER:
-			sorter = new DescendingSorter(generator.getNumbers());
+			sorter = new DescendingSorter();
 			sort();
 			break;
 
@@ -72,7 +72,7 @@ public class SortingProcessor {
 	}
 	
 	private void sort() {
-		sorter.sort();
+		sorter.sort(generator.getNumbers());
 		sorter.printSortedNumbers();
 	}
 	

@@ -1,7 +1,8 @@
 
 public class DescendingSorter extends Sorter {
-	DescendingSorter(int[] numbers){
-		super(numbers);
+
+	public DescendingSorter() {
+		super();
 	}
 
 	protected void findNumberToSwapFromLeft(int lowerLimit){

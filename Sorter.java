@@ -1,15 +1,12 @@
 
-public class Sorter {
+public abstract class Sorter {
 	protected int [] numbers;
 	protected int leftIndex;
 	protected int rightIndex;
 	protected int pivot;
 	
-	Sorter(int[] numbers) {
+	public void sort(int[] numbers) {
 		this.numbers = numbers;
-	}
-	
-	public void sort() {
 		sort(0, numbers.length - 1);
 	}
 	
@@ -47,15 +44,9 @@ public class Sorter {
 		return leftIndex <= rightIndex;
 	}
 	
-	protected void findNumberToSwapFromLeft(int lowerLimit){
-		while (numbers[leftIndex] < pivot && lowerLimit < rightIndex) 
-			leftIndex++;
-	}
+	abstract protected void findNumberToSwapFromLeft(int lowerLimit);
 	
-	protected void findNumberToSwapFromRight(int upperLimit){
-		while (pivot < numbers[rightIndex] && leftIndex < upperLimit) 
-			rightIndex--;
-	}
+	abstract protected void findNumberToSwapFromRight(int upperLimit);
 	
 	private void swap(int left, int right) {
 		int temperate = numbers[left];
