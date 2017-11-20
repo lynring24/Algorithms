@@ -15,9 +15,6 @@ public class AscendingSorter {
 	
 	
 	protected void sort(int lowIndex, int highIndex) {
-		/*
-		call sort for subset of left side and right side each*/
-		
 		if (lowIndex > highIndex) 
 			 return ; 
 		
@@ -31,7 +28,6 @@ public class AscendingSorter {
 	}
 	
 	protected void sortByMiddle(int lowIndex, int highIndex) {
-
 		int middle = Math.floorDiv(lowIndex+ highIndex,2);
 		pivot = numbers[middle];
 

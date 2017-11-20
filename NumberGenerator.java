@@ -1,16 +1,17 @@
 import java.util.Scanner;
 
 public class NumberGenerator {
-	private Scanner scanner = new Scanner(System.in);
+	private Scanner scanner;
 	private int[] numbers;
 	private int numberOfNumbers;
 
 	public void getInputs() {
+		scanner = new Scanner(System.in);
 		try {
 			setNumberOfNumbers();
 			setNumbers();
-		} catch (Exception e) {
-			System.out.println("Unappropriate inputs");
+		}  catch (Exception e) {
+			System.out.println("Unappropriate inputs(Integers only)");
 			scanner.nextLine();
 		}
 	}
@@ -20,18 +21,17 @@ public class NumberGenerator {
 		numberOfNumbers = scanner.nextInt();
 	}
 
-	private void setNumbers() {
+	private void setNumbers() throws Exception{
 		numbers = new int[numberOfNumbers];
 		System.out.print("> numbers:");
 
 		for (int i = 0; i < numberOfNumbers; i++)
 			numbers[i] = scanner.nextInt();
 		
-		System.out.println("Input Completed");
-
+		scanner.nextLine();
 	}
 
-	public int [] getNumbers() {
+	public int[] getNumbers() {
 		return numbers;
 	}
 }
