@@ -14,45 +14,43 @@ public class AscendingSorter {
 	}
 	
 	
-	protected void sort(int lowIndex, int highIndex) {
-		if (lowIndex > highIndex) 
+	protected void sort(int lowerLimit, int upperLimit) {
+		if (lowerLimit > upperLimit) 
 			 return ; 
 		
-		sortByMiddle(lowIndex, highIndex);
+		sortByMiddle(lowerLimit, upperLimit);
 		
-		if (lowIndex < rightIndex) 
-			sort(lowIndex, rightIndex);
+		if (lowerLimit < rightIndex) 
+			sort(lowerLimit, rightIndex);
 		
-		if (leftIndex < highIndex) 
-			sort(leftIndex, highIndex);
+		if (leftIndex < upperLimit) 
+			sort(leftIndex, upperLimit);
 	}
 	
-	protected void sortByMiddle(int lowIndex, int highIndex) {
-		int middle = Math.floorDiv(lowIndex+ highIndex,2);
+	protected void sortByMiddle(int lowerLimit, int upperLimit) {
+		int middle = Math.floorDiv(lowerLimit+ upperLimit,2);
 		pivot = numbers[middle];
 
-		leftIndex = lowIndex;
-		rightIndex = highIndex;
+		leftIndex = lowerLimit;
+		rightIndex = upperLimit;
 		
 		while (leftIndex <= rightIndex) {
-			while (isPivotBiggerThanLeftIn(lowIndex)) 
-				leftIndex++;
-			
-			while (isPivotSmallerThanRightIn(highIndex)) 
-				rightIndex--;
+			findNumberToChangeFromLeft(lowerLimit);
+			findNumberToChangeFromRight(upperLimit);
 			
 			if (leftIndex <= rightIndex) 
 				swap(leftIndex, rightIndex);	
 		}
 	}
 	
-
-	protected boolean isPivotBiggerThanLeftIn(int lowIndex) {
-		return (numbers[leftIndex] < pivot && lowIndex < rightIndex);
+	protected void findNumberToChangeFromLeft(int lowerLimit){
+		while (numbers[leftIndex] < pivot && lowerLimit < rightIndex) 
+			leftIndex++;
 	}
 	
-	protected boolean isPivotSmallerThanRightIn(int highIndex) {
-		return (pivot < numbers[rightIndex] && leftIndex < highIndex);
+	protected void findNumberToChangeFromRight(int upperLimit){
+		while (pivot < numbers[rightIndex] && leftIndex < upperLimit) 
+			rightIndex--;
 	}
 	
 	private void swap(int left, int right) {
