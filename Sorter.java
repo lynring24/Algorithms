@@ -30,8 +30,11 @@ public abstract class Sorter {
 			findNumberFromLeftWithin(lowerLimit);
 			findNumberFromRightWithin(upperLimit);
 			
-			if (isSortNotFinished()) 
-				swap(leftIndex, rightIndex);	
+			if (isSortNotFinished()) { 
+				swap(leftIndex, rightIndex);		
+				rightIndex--;
+				leftIndex++;	
+			}
 		}
 	}
 	
@@ -47,9 +50,6 @@ public abstract class Sorter {
 		int temperate = numbers[left];
 		numbers[left] = numbers[right];
 		numbers[right] = temperate;
-		
-		rightIndex--;
-		leftIndex++;
 	}
 	
 	protected void printSortedNumbers() {
