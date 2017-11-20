@@ -27,8 +27,8 @@ public abstract class Sorter {
 		rightIndex = upperLimit;
 		
 		while (isSortNotFinished()) {
-			findNumberFromLeftWithin(lowerLimit);
-			findNumberFromRightWithin(upperLimit);
+			findLeftToSortWithin(lowerLimit);
+			findRightToSortWithin(upperLimit);
 			
 			if (isSortNotFinished()) { 
 				swap(leftIndex, rightIndex);		
@@ -42,9 +42,9 @@ public abstract class Sorter {
 		return leftIndex <= rightIndex;
 	}
 	
-	abstract protected void findNumberFromLeftWithin(int lowerLimit);
+	abstract protected void findLeftToSortWithin(int lowerLimit);
 	
-	abstract protected void findNumberFromRightWithin(int upperLimit);
+	abstract protected void findRightToSortWithin(int upperLimit);
 	
 	private void swap(int left, int right) {
 		int temperate = numbers[left];
