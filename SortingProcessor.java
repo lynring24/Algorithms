@@ -56,13 +56,11 @@ public class SortingProcessor {
 			break;
 
 		case ASCENDINGORDER:
-			sorter = new AscendingSorter();
-			sort();
+			sortWith(new AscendingSorter());
 			break;
 
 		case DESCENDINGORDER:
-			sorter = new DescendingSorter();
-			sort();
+			sortWith(new DescendingSorter());
 			break;
 
 		case TERMINATION:
@@ -71,9 +69,9 @@ public class SortingProcessor {
 		}
 	}
 	
-	private void sort() {
-		sorter.sort(generator.getNumbers());
-		sorter.printSortedNumbers();
+	private void sortWith(Sorter input) {
+		sorter = input;
+		sorter.printResult(generator.getNumbers());
 	}
 	
 

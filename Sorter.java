@@ -5,11 +5,11 @@ public abstract class Sorter {
 	protected int rightIndex;
 	protected int pivot;
 	
-	public void sort(int[] numbers) {
+	public void printResult(int[] numbers) {
 		this.numbers = numbers;
 		sort(0, numbers.length - 1);
+		printSortedNumbers();
 	}
-	
 	
 	protected void sort(int lowerLimit, int upperLimit) {
 		if (lowerLimit > upperLimit) 
@@ -25,9 +25,8 @@ public abstract class Sorter {
 	}
 	
 	protected void sortByMiddle(int lowerLimit, int upperLimit) {
-		int middle = Math.floorDiv(lowerLimit+ upperLimit, 2);
+		int middle = Math.floorDiv(lowerLimit + upperLimit, 2);
 		pivot = numbers[middle];
-
 		leftIndex = lowerLimit;
 		rightIndex = upperLimit;
 		
@@ -50,9 +49,9 @@ public abstract class Sorter {
 	
 	private void swap(int left, int right) {
 		int temperate = numbers[left];
-		
 		numbers[left] = numbers[right];
 		numbers[right] = temperate;
+		
 		rightIndex--;
 		leftIndex++;
 	}
