@@ -35,20 +35,20 @@ public class AscendingSorter {
 		rightIndex = upperLimit;
 		
 		while (leftIndex <= rightIndex) {
-			findNumberToChangeFromLeft(lowerLimit);
-			findNumberToChangeFromRight(upperLimit);
+			findNumberToSwapFromLeft(lowerLimit);
+			findNumberToSwapFromRight(upperLimit);
 			
 			if (leftIndex <= rightIndex) 
 				swap(leftIndex, rightIndex);	
 		}
 	}
 	
-	protected void findNumberToChangeFromLeft(int lowerLimit){
+	protected void findNumberToSwapFromLeft(int lowerLimit){
 		while (numbers[leftIndex] < pivot && lowerLimit < rightIndex) 
 			leftIndex++;
 	}
 	
-	protected void findNumberToChangeFromRight(int upperLimit){
+	protected void findNumberToSwapFromRight(int upperLimit){
 		while (pivot < numbers[rightIndex] && leftIndex < upperLimit) 
 			rightIndex--;
 	}

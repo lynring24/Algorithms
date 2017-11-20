@@ -4,12 +4,12 @@ public class DescendingSorter extends AscendingSorter {
 		super(numbers);
 	}
 
-	protected void findNumberToChangeFromLeft(int lowIndex){
+	protected void findNumberToSwapFromLeft(int lowIndex){
 		while (numbers[leftIndex] > pivot && lowIndex < rightIndex) 
 			leftIndex++;
 	}
 	
-	protected void findNumberToChangeFromRight(int highIndex){
+	protected void findNumberToSwapFromRight(int highIndex){
 		while (pivot > numbers[rightIndex] && leftIndex < highIndex) 
 			rightIndex--;
 	}
