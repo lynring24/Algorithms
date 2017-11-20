@@ -12,16 +12,12 @@ public abstract class Sorter {
 	}
 	
 	protected void sort(int lowerLimit, int upperLimit) {
-		if (lowerLimit > upperLimit) 
+		if (lowerLimit >= upperLimit) 
 			 return ; 
 		
 		sortByMiddle(lowerLimit, upperLimit);
-		
-		if (lowerLimit < rightIndex) 
-			sort(lowerLimit, rightIndex);
-		
-		if (leftIndex < upperLimit) 
-			sort(leftIndex, upperLimit);
+		sort(lowerLimit, rightIndex);
+		sort(leftIndex, upperLimit);
 	}
 	
 	protected void sortByMiddle(int lowerLimit, int upperLimit) {
