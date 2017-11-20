@@ -7,10 +7,11 @@ public class NumberGenerator {
 
 	public void getInputs() {
 		scanner = new Scanner(System.in);
+
 		try {
 			setNumberOfNumbers();
 			setNumbers();
-		}  catch (Exception e) {
+		} catch (Exception e) {
 			System.out.println("Unappropriate inputs(Integers only)");
 			scanner.nextLine();
 		}
@@ -21,14 +22,14 @@ public class NumberGenerator {
 		numberOfNumbers = scanner.nextInt();
 	}
 
-	private void setNumbers() throws Exception{
+	private void setNumbers() throws Exception {
 		numbers = new int[numberOfNumbers];
 		System.out.print("> numbers:");
 
 		for (int i = 0; i < numberOfNumbers; i++)
 			numbers[i] = scanner.nextInt();
-		
-		scanner.nextLine();
+
+		scanner.nextLine(); //DO NOT REMOVE, this is for cleaning the buffer of scanner
 	}
 
 	public int[] getNumbers() {

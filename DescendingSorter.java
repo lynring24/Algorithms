@@ -5,13 +5,13 @@ public class DescendingSorter extends Sorter {
 		super();
 	}
 
-	protected void lookNumberToSortFromLeft(){
-		while ( numbers[leftIndex] > pivot ) 
+	protected void lookNumberToSortFromLeft() {
+		while (numbers[leftIndex] > pivot)
 			leftIndex++;
 	}
-	
-	protected void lookNumberToSortFromRight(){
-		while ( pivot > numbers[rightIndex] ) 
+
+	protected void lookNumberToSortFromRight() {
+		while (pivot > numbers[rightIndex])
 			rightIndex--;
 	}
 }
