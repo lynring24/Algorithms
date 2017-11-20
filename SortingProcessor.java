@@ -3,11 +3,11 @@ import java.util.Scanner;
 public class SortingProcessor {
 	private static final int TERMINATION = 4;
 	private static int choice = -1;
-	private NumberGenerator generator;
-	
+	private OriginalNumbers generator;
+
 	public static void main(String[] args) {
 		SortingProcessor processor = new SortingProcessor();
-		processor.generator = new NumberGenerator();
+		processor.generator = new OriginalNumbers(200);
 
 		processor.printAuthorInfo();
 		processor.execute();
@@ -25,7 +25,7 @@ public class SortingProcessor {
 			operate();
 		} while (choice != TERMINATION);
 	}
-	
+
 	private void printMenu() {
 		System.out.println();
 		System.out.println("1. Input numbers");
@@ -51,7 +51,7 @@ public class SortingProcessor {
 
 		switch (choice) {
 		case INPUT:
-			generator.getInputs();
+			// generator.getInputs();
 			break;
 
 		case ASCENDINGORDER:
@@ -67,13 +67,13 @@ public class SortingProcessor {
 			break;
 		}
 	}
-	
+
 	private void printResultWith(Sorter selectedOne) {
 		Sorter sorter = selectedOne;
-		sorter.sort(generator.getNumbers());
+		sorter.sort(generator.getClone(0));
 		sorter.printResult();
 	}
-	
+
 	private void handleException() {
 		System.out.println("Unappropriate inputs(Integers only)");
 		choice = TERMINATION;
