@@ -1,8 +1,6 @@
 import java.util.Scanner;
-import java.util.logging.*;
 
 public class SortingProcessor {
-	private static final Logger LOGGER = Logger.getLogger(SortingProcessor.class.getName());
 	private static final int TERMINATION = 4;
 	private static int choice = -1;
 	private NumberGenerator generator;
@@ -23,6 +21,7 @@ public class SortingProcessor {
 	private void execute() {
 		do {
 			printMenu();
+			getInput();
 			operate();
 		} while (choice != TERMINATION);
 	}
@@ -36,18 +35,16 @@ public class SortingProcessor {
 		System.out.print("\n>");
 	}
 
-	private void operate() {
+	private void getInput() {
 		Scanner scanner = new Scanner(System.in);
 		try {
 			choice = scanner.nextInt();
-			operateChoice();
-		} catch (Exception inputExeption) {
-			LOGGER.log(Level.SEVERE, "inappropriate input", inputExeption);
-			choice = TERMINATION;
+		} catch (Exception e) {
+			handleException();
 		}
 	}
 
-	private void operateChoice() {
+	private void operate() {
 		final int INPUT = 1;
 		final int ASCENDINGORDER = 2;
 		final int DESCENDINGORDER = 3;
@@ -76,5 +73,8 @@ public class SortingProcessor {
 		sorter.printResult(generator.getNumbers());
 	}
 	
-
+	private void handleException() {
+		System.out.println("Unappropriate inputs(Integers only)");
+		choice = TERMINATION;
+	}
 }

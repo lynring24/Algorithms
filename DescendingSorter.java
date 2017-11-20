@@ -5,12 +5,12 @@ public class DescendingSorter extends Sorter {
 		super();
 	}
 
-	protected void findNumberToSwapFromLeft(int lowerLimit){
+	protected void findNumberFromLeftWithin(int lowerLimit){
 		while (numbers[leftIndex] > pivot && lowerLimit < rightIndex) 
 			leftIndex++;
 	}
 	
-	protected void findNumberToSwapFromRight(int upperLimit){
+	protected void findNumberFromRightWithin(int upperLimit){
 		while (pivot > numbers[rightIndex] && leftIndex < upperLimit) 
 			rightIndex--;
 	}
